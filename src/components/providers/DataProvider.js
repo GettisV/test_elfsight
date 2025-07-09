@@ -18,24 +18,22 @@ export function DataProvider({ children }) {
   const [info, setInfo] = useState({});
   const [apiURL, setApiURL] = useState(API_URL);
 
-  const fetchData = useCallback(() => {
-    return async (url) => {
-      setIsFetching(true);
-      setIsError(false);
+  const fetchData = useCallback(async (url) => {
+    setIsFetching(true);
+    setIsError(false);
 
-      axios
-        .get(url)
-        .then(({ data }) => {
-          setIsFetching(false);
-          setCharacters(data.results);
-          setInfo(data.info);
-        })
-        .catch((e) => {
-          setIsFetching(false);
-          setIsError(true);
-          console.error(e);
-        });
-    };
+    axios
+      .get(url)
+      .then(({ data }) => {
+        setIsFetching(false);
+        setCharacters(data.results);
+        setInfo(data.info);
+      })
+      .catch((e) => {
+        setIsFetching(false);
+        setIsError(true);
+        console.error(e);
+      });
   }, []);
 
   useEffect(() => {
