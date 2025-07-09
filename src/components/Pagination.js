@@ -28,8 +28,8 @@ export function Pagination() {
   }, [activePage, pageClickHandler]);
 
   const lastPageOnClickHandler = useCallback(() => {
-    pageClickHandler(pages.length);
-  }, [pageClickHandler, pages.length]);
+    pages && pageClickHandler(pages.length - 1);
+  }, [pageClickHandler, pages]);
 
   const StyledPagination = styled.div`
     width: 100%;
