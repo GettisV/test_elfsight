@@ -36,27 +36,6 @@ export function Pagination() {
     text-align: center;
   `;
 
-  const Page = styled.span`
-    color: #fff;
-    font-size: 18px;
-    padding: 5px;
-    cursor: pointer;
-    transition: color 0.2s;
-    ${({ active }) => active && 'color: #83bf46'};
-
-    &:hover {
-      color: #83bf46;
-    }
-  `;
-
-  const Ellipsis = styled(Page)`
-    cursor: default;
-
-    &:hover {
-      color: #fff;
-    }
-  `;
-
   useEffect(() => {
     const createdPages = Array.from({ length: info.pages }, (_, i) => {
       const URLWithPage = new URL(apiURL);
@@ -103,3 +82,24 @@ export function Pagination() {
     </StyledPagination>
   );
 }
+
+const Page = styled.span`
+  color: #fff;
+  font-size: 18px;
+  padding: 5px;
+  cursor: pointer;
+  transition: color 0.2s;
+  ${({ active }) => active && 'color: #83bf46'};
+
+  &:hover {
+    color: #83bf46;
+  }
+`;
+
+const Ellipsis = styled(Page)`
+  cursor: default;
+
+  &:hover {
+    color: #fff;
+  }
+`;

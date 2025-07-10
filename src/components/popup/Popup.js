@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import { PopupEpisodes } from './PopupEpisodes';
 import { PopupHeader } from './PopupHeader';
 import { PopupInfo } from './PopupInfo';
+import { useCallback, useEffect } from 'react';
 
 export function Popup({ settings: { visible, content = {} }, setSettings }) {
   const {
@@ -16,19 +17,49 @@ export function Popup({ settings: { visible, content = {} }, setSettings }) {
     episode: episodes
   } = content;
 
-  function togglePopup(e) {
-    if (e.currentTarget !== e.target) {
-      return;
+  const onKeyDownHandler = useCallback(
+    (e) => {
+      if (e.key === 'Escape')
+        setSettings((prevState) => ({
+          ...prevState,
+          visible: !prevState.visible
+        }));
+    },
+    [setSettings]
+  );
+
+  const togglePopup = useCallback(
+    (e) => {
+      if (e.currentTarget !== e.target) {
+        return;
+      }
+
+      setSettings((prevState) => ({
+        ...prevState,
+        visible: !prevState.visible
+      }));
+    },
+    [setSettings]
+  );
+
+  useEffect(() => {
+    if (visible) {
+      document.body.style.overflow = 'hidden';
+      document.addEventListener('keydown', onKeyDownHandler);
     }
 
-    setSettings((prevState) => ({
-      ...prevState,
-      visible: !prevState.visible
-    }));
-  }
+    return () => {
+      document.body.style.overflow = 'scroll';
+      document.removeEventListener('keydown', onKeyDownHandler);
+    };
+  }, [onKeyDownHandler, visible]);
 
   return (
-    <PopupContainer visible={visible}>
+    <PopupContainer
+      visible={visible}
+      onClick={togglePopup}
+      onKeyDown={onKeyDownHandler}
+    >
       <StyledPopup>
         <CloseIcon onClick={togglePopup} />
 

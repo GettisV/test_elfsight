@@ -1,0 +1,18 @@
+.buttonContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 949px) {
+  .buttonContainer {
+    display: none;
+  }
+}
+
+@media (min-width: 950px) {
+  .buttonAction {
+    display: none;
+  }
+}

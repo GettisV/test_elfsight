@@ -49,6 +49,8 @@ export function DataProvider({ children }) {
       characters,
       fetchData,
       isFetching,
+      setCharacters,
+      setInfo,
       isError,
       info
     }),
