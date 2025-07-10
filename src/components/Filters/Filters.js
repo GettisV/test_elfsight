@@ -3,7 +3,7 @@ import { Input } from './Input/Input';
 import { Select } from './Select/Select';
 import { Button } from './Button/Button';
 import './Filters.css';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useData } from '../providers';
 
 export function Filters() {

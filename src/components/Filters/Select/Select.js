@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import caretImg from '../../../assets/caret.png';
 import styled from 'styled-components';
 

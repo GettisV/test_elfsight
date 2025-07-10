@@ -22,12 +22,8 @@ export function PopupEpisodes({ episodes }) {
       .get(`${API_EPISODES_URL}/${episodesIds.join(',')}`)
       .then(({ data }) => {
         if (episodes.length === 1) {
-          console.log(data);
-
           setSeries([data]);
         } else {
-          console.log(data);
-
           setSeries(data);
         }
       })
